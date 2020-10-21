@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block title %}Регистрация{% endblock %}
+{% block title %} Регистрация {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="header"></div>
-        <h2>Регистрация</h2>
+  <div class="container">
+    <div>
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register Here</h1>
+        <h3>Just fill out the form.</h3>
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="" value="Register">
+    </form>
+        
+      {% endif %}
     </div>
+  </div>
+<br>
+<a href="/">Вернуться на главную страницу </a>
 {% endblock %}
